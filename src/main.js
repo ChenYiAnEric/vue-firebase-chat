@@ -3,7 +3,9 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import { firestorePlugin } from 'vuefire'
-import { db } from '@/db'
+import vuetify from './plugins/vuetify'
+import 'roboto-fontface/css/roboto/roboto-fontface.css'
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(firestorePlugin)
 
@@ -12,9 +14,6 @@ Vue.config.productionTip = false
 new Vue({
   store,
   router,
-  data: () => ({ message: [] }),
-  firestore: {
-    message: db.collection('Message')
-  },
+  vuetify,
   render: h => h(App)
 }).$mount('#app')

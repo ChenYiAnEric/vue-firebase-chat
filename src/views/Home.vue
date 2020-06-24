@@ -36,6 +36,7 @@
 // @ is an alias to /src
 import { db } from '../db'
 import firebase from 'firebase'
+const fStore = db.firestore()
 
 export default {
   name: 'Home',
@@ -47,7 +48,7 @@ export default {
     }
   },
   firestore: {
-    message: db.collection('Message')
+    message: fStore.collection('Message')
   },
   created () {
     // this.message = this.$root.$data.message
@@ -68,7 +69,7 @@ export default {
       if (this.inputMessage === '') return
 
       // Add message to firestore
-      db.collection('Message').add({
+      fStore.collection('Message').add({
         Author: {
           Uid: 'xxx',
           Name: 'Eric',

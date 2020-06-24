@@ -1,33 +1,44 @@
 <template>
-  <div class="home">
+  <div class="home" style="text-align: center">
     <img alt="Vue logo" src="../assets/logo.png" height="40">
     <div class="testInput">
-      <table border="1">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>PhotoUrl</th>
-          <th>Content</th>
-          <th>time</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(item, key) in message" :key="key">
-          <td>{{key}}</td>
-          <td>{{item.Author.Name}}</td>
-          <td>{{item.Author.Email}}</td>
-          <td>{{item.Author.PhotoUrl}}</td>
-          <td>{{item.Content}}</td>
-          <td>{{dateFormat(item.CreateTime.toDate())}}</td>
-        </tr>
-        </tbody>
-      </table>
+      <v-simple-table>
+        <template v-slot:default>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>PhotoUrl</th>
+            <th>Content</th>
+            <th>time</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item, key) in message" :key="key">
+            <td>{{key}}</td>
+            <td>{{item.Author.Name}}</td>
+            <td>{{item.Author.Email}}</td>
+            <td>{{item.Author.PhotoUrl}}</td>
+            <td>{{item.Content}}</td>
+            <td>{{dateFormat(item.CreateTime.toDate())}}</td>
+          </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
     </div>
     <div class="testInput">
-      <input type="text" v-model="inputMessage">
-      <input type="submit" value="送出" @click="addMessage()">
+      <v-col lg="3" md="4" sm="6" xs="12">
+        <v-text-field
+          label="請輸入文字"
+          single-line
+          solo
+          v-model="inputMessage"
+          append-outer-icon="mdi-send"
+          @click:append-outer="addMessage"
+          @click:clear="clearMessage"
+        ></v-text-field>
+      </v-col>
     </div>
   </div>
 </template>
@@ -82,6 +93,9 @@ export default {
         .then(() => {
           this.inputMessage = ''
         })
+    },
+    clearMessage () {
+      this.inputMessage = ''
     }
   }
 }

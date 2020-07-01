@@ -11,6 +11,7 @@
     "@mdi/font": "^3.6.95",
     "core-js": "^3.6.5",
     "firebase": "^7.15.1",
+    "lodash.camelcase": "^4.3.0",
     "roboto-fontface": "*",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

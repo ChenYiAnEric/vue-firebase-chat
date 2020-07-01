@@ -31,14 +31,21 @@
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
+            <v-list-item-title>About</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/login">
+          <v-list-item v-if="!isLogin" to="/login">
             <v-list-item-icon>
               <v-icon>mdi-login</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="isLogin" @click="logout">
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item>
 
         </v-list-item-group>
@@ -54,11 +61,25 @@
 <script>
 export default {
   name: 'App',
-
   components: {},
-
+  created () {
+    this.$store.dispatch('signInAuto')
+  },
+  computed: {
+    isLogin () {
+      return this.$store.state.isLogin
+    }
+  },
   data: () => ({
     drawer: false
-  })
+  }),
+  methods: {
+    logout () {
+      this.$store.dispatch('signOut')
+        .then(() => {
+          this.$router.push('/login')
+        })
+    }
+  }
 }
 </script>

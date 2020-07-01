@@ -1,45 +1,52 @@
 <template>
   <div class="home" style="text-align: center">
-    <img alt="Vue logo" src="../assets/logo.png" height="40">
-    <div class="testInput">
-      <v-simple-table>
-        <template v-slot:default>
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>PhotoUrl</th>
-            <th>Content</th>
-            <th>time</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(item, key) in message" :key="key">
-            <td>{{key}}</td>
-            <td>{{item.Author.Name}}</td>
-            <td>{{item.Author.Email}}</td>
-            <td>{{item.Author.PhotoUrl}}</td>
-            <td>{{item.Content}}</td>
-            <td>{{dateFormat(item.CreateTime.toDate())}}</td>
-          </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </div>
-    <div class="testInput">
-      <v-col lg="3" md="4" sm="6" xs="12">
-        <v-text-field
-          label="請輸入文字"
-          single-line
-          solo
-          v-model="inputMessage"
-          append-outer-icon="mdi-send"
-          @click:append-outer="addMessage"
-          @click:clear="clearMessage"
-        ></v-text-field>
-      </v-col>
-    </div>
+    <img alt="Vue logo" height="40" src="../assets/logo.png">
+    <v-card class="col-6 mx-auto">
+      <v-card-text v-if="isLogin">
+        <div class="testInput">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>PhotoUrl</th>
+                <th>Content</th>
+                <th>time</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr :key="key" v-for="(item, key) in message">
+                <td>{{key}}</td>
+                <td>{{item.Author.Name}}</td>
+                <td>{{item.Author.Email}}</td>
+                <td>{{item.Author.PhotoUrl}}</td>
+                <td>{{item.Content}}</td>
+                <td>{{dateFormat(item.CreateTime.toDate())}}</td>
+              </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </div>
+        <div class="testInput">
+          <v-col lg="6" md="6" sm="6" xs="12">
+            <v-text-field
+              @click:append-outer="addMessage"
+              @click:clear="clearMessage"
+              append-outer-icon="mdi-send"
+              label="請輸入文字"
+              single-line
+              solo
+              v-model="inputMessage"
+            ></v-text-field>
+          </v-col>
+        </div>
+      </v-card-text>
+      <v-card-text>
+        <v-btn v-if="!isLogin" @click="login">請先登入</v-btn>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -47,6 +54,7 @@
 // @ is an alias to /src
 import { db } from '../db'
 import firebase from 'firebase'
+
 const fStore = db.firestore()
 
 export default {
@@ -61,10 +69,15 @@ export default {
   firestore: {
     message: fStore.collection('Message')
   },
-  created () {
-    // this.message = this.$root.$data.message
+  computed: {
+    isLogin () {
+      return this.$store.state.isLogin
+    }
   },
   methods: {
+    login () {
+      this.$router.push('/login')
+    },
     dateFormat (time) {
       var date = new Date(time)
       var year = date.getFullYear()
@@ -93,6 +106,9 @@ export default {
         .then(() => {
           this.inputMessage = ''
         })
+        .catch((error) => {
+          console.log('錯誤:' + error)
+        })
     },
     clearMessage () {
       this.inputMessage = ''
@@ -101,7 +117,7 @@ export default {
 }
 </script>
 <style>
-  .testInput{
+  .testInput {
     display: flex;
     align-content: center;
     justify-content: center;

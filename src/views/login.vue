@@ -14,7 +14,7 @@
             md="4"
             sm="8"
           >
-            <v-card v-if="!isAuth" class="elevation-12">
+            <v-card v-if="!isLogin" class="elevation-12">
               <v-toolbar
                 color="blue darken-1"
                 dark
@@ -73,16 +73,9 @@
   </div>
 </template>
 <script>
-// import firebase from 'firebase/app'
-import { db } from '../db'
-
-const fAuth = db.auth()
-
 export default {
   data () {
     return {
-      user: {},
-      isAuth: false,
       account: '',
       password: '',
       emailRules: [
@@ -91,16 +84,9 @@ export default {
       ]
     }
   },
-  created () {
-    fAuth.onAuthStateChanged(user => {
-      if (user) {
-        this.user = user
-        this.isAuth = true
-      } else {
-        this.user = {}
-        this.isAuth = false
-      }
-    })
+  computed: {
+    user () { return this.$store.state.user || '' },
+    isLogin () { return this.$store.state.isLogin }
   },
   methods: {
     singUp () {
@@ -114,25 +100,12 @@ export default {
       //     this.isAuth = true
       //   })
       //   .catch(err => console.error(err))
-      const vm = this
-      fAuth.signInWithEmailAndPassword(vm.account, vm.password)
-        .then(function (user) {
-          vm.user = user
-          vm.isAuth = true
-        })
-        .catch(function (error) {
-          const errorCode = error.code
-          const errorMessage = error.message
-          alert(errorCode, errorMessage)
-        })
-    },
-    logout () {
-      fAuth.signOut()
-        .then(() => {
-          this.user = {}
-          this.isAuth = false
-        })
-        .catch(err => console.log(err))
+      this.$store.dispatch('signInWithEmail', {
+        email: this.account,
+        password: this.password
+      }).then(() => {
+        this.$router.push('/')
+      })
     }
   }
 }

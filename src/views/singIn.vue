@@ -85,11 +85,15 @@ export default {
           alert('請輸入密碼')
           return false
         } else {
-          fAuth.createUserWithEmailAndPassword(vm.account, vm.password).catch(function (error) {
-            const errorCode = error.code
-            const errorMessage = error.message
-            alert(errorCode, errorMessage)
-          })
+          fAuth.createUserWithEmailAndPassword(vm.account, vm.password)
+            .then(function () {
+              vm.$router.push('/')
+            })
+            .catch(function (error) {
+              const errorCode = error.code
+              const errorMessage = error.message
+              alert(errorCode, errorMessage)
+            })
         }
       }
     }

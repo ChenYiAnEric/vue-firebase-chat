@@ -3,32 +3,48 @@
     <img alt="Vue logo" height="40" src="../assets/logo.png">
     <v-card class="col-6 mx-auto">
       <v-card-text v-if="isLogin">
-        <div class="testInput">
-          <v-simple-table>
-            <template v-slot:default>
-              <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>PhotoUrl</th>
-                <th>Content</th>
-                <th>time</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr :key="key" v-for="(item, key) in message">
-                <td>{{key}}</td>
-                <td>{{item.Author.Name}}</td>
-                <td>{{item.Author.Email}}</td>
-                <td>{{item.Author.PhotoUrl}}</td>
-                <td>{{item.Content}}</td>
-                <td>{{dateFormat(item.CreateTime.toDate())}}</td>
-              </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </div>
+<!--        <div class="testInput">-->
+<!--          <v-simple-table>-->
+<!--            <template v-slot:default>-->
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                <th>ID</th>-->
+<!--                <th>Name</th>-->
+<!--                <th>Email</th>-->
+<!--                <th>PhotoUrl</th>-->
+<!--                <th>Content</th>-->
+<!--                <th>time</th>-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--              <tr :key="key" v-for="(item, key) in message">-->
+<!--                <td>{{key}}</td>-->
+<!--                <td>{{item.Author.Name}}</td>-->
+<!--                <td>{{item.Author.Email}}</td>-->
+<!--                <td>{{item.Author.PhotoUrl}}</td>-->
+<!--                <td>{{item.Content}}</td>-->
+<!--                <td>{{dateFormat(item.CreateTime.toDate())}}</td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </template>-->
+<!--          </v-simple-table>-->
+<!--        </div>-->
+        <v-card max-height="80vh">
+          <v-card-text>
+            <v-flex  v-for="(item, key) in message"
+                     :key="key" :class="isMy(item.Author.Email, false)">
+              <p v-if="!isMy(item.Author.Email, true)" class="ma-0 ml-2">{{name(item.Author.Email)}}</p>
+              <v-alert
+                class="rounded-pill ma-0 d-inline-block"
+                dense
+                color="grey darken-1"
+                dark
+              >
+                {{item.Content}}
+              </v-alert>
+            </v-flex>
+          </v-card-text>
+        </v-card>
         <div class="testInput">
           <v-col lg="6" md="6" sm="6" xs="12">
             <v-text-field
@@ -70,6 +86,9 @@ export default {
     message: fStore.collection('Message')
   },
   computed: {
+    user () {
+      return this.$store.state.user
+    },
     isLogin () {
       return this.$store.state.isLogin
     }
@@ -89,16 +108,34 @@ export default {
       // 拼接
       return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
     },
+    isMy (_email, _type) {
+      if (_type) {
+        if (_email === this.user.email) {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        if (_email === this.user.email) {
+          return 'text-right'
+        } else {
+          return 'text-left'
+        }
+      }
+    },
+    name (_email) {
+      return _email.split('@')[0]
+    },
     addMessage () {
       if (this.inputMessage === '') return
-
+      const name = this.user.email.split('@')[0]
       // Add message to firestore
       fStore.collection('Message').add({
         Author: {
           Uid: 'xxx',
-          Name: 'Eric',
+          Name: name,
           PhotoUrl: 'https://test.test',
-          Email: 'xxx@test.test'
+          Email: this.user.email
         },
         Content: this.inputMessage,
         CreateTime: firebase.firestore.Timestamp.fromDate(new Date())

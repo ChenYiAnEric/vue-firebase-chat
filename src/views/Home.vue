@@ -1,7 +1,7 @@
 <template>
   <div class="home" style="text-align: center">
     <img alt="Vue logo" height="40" src="../assets/logo.png">
-    <v-card class="col-6 mx-auto">
+    <v-card class="col-12 col-md-6 pa-0 mx-auto">
       <v-card-text v-if="isLogin">
 <!--        <div class="testInput">-->
 <!--          <v-simple-table>-->
@@ -29,9 +29,9 @@
 <!--            </template>-->
 <!--          </v-simple-table>-->
 <!--        </div>-->
-        <v-card max-height="80vh">
+        <v-card max-height="70vh" style="overflow: auto">
           <v-card-text>
-            <v-flex  v-for="(item, key) in message"
+            <v-flex  v-for="(item, key) in MessageSort"
                      :key="key" :class="isMy(item.Author.Email, false)">
               <p v-if="!isMy(item.Author.Email, true)" class="ma-0 ml-2">{{name(item.Author.Email)}}</p>
               <v-alert
@@ -91,6 +91,13 @@ export default {
     },
     isLogin () {
       return this.$store.state.isLogin
+    },
+    MessageSort () {
+      const message = this.message
+      const sort = message.sort(function (a, b) {
+        return new Date(b.CreateTime.toDate()) - new Date(a.CreateTime.toDate())
+      })
+      return sort
     }
   },
   methods: {

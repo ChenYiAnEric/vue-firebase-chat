@@ -10,16 +10,23 @@ export default new Vuex.Store({
   state: {
     user: null,
     token: '',
-    isLogin: false
+    isLogin: false,
+    isMobile: false
   },
   mutations: {
     SET_AUTH (state, options) {
       state.user = options.user
       state.token = options.token
       state.isLogin = options.isLogin
+    },
+    SET_MOBILE (state, option) {
+      state.isMobile = option
     }
   },
   actions: {
+    setMobile (context, option) {
+      context.commit('SET_MOBILE', option)
+    },
     setAuth (context, options) {
       context.commit('SET_AUTH', {
         token: options.token,

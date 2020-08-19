@@ -1,41 +1,39 @@
 <template>
   <div class="chat-room pa-4">
-    <v-card class="col-12 col-md-6 pa-0 mx-auto">
-      <v-card-text v-if="isLogin">
-        <v-card max-height="70vh" style="overflow: auto">
-          <v-card-text>
-            <v-flex  v-for="(item, key) in MessageSort"
-                     :key="key" :class="isMy(item.Author.Email, false)">
-              <p v-if="!isMy(item.Author.Email, true)" class="ma-0 ml-2">{{name(item.Author.Email)}}</p>
-              <v-alert
-                class="rounded-pill ma-0 d-inline-block"
-                dense
-                color="grey darken-1"
-                dark
-              >
-                {{item.Content}}
-              </v-alert>
-            </v-flex>
-          </v-card-text>
-        </v-card>
-        <div class="testInput">
-          <v-col lg="6" md="6" sm="6" xs="12">
-            <v-text-field
-              @click:append-outer="addMessage"
-              @click:clear="clearMessage"
-              append-outer-icon="mdi-send"
-              label="請輸入文字"
-              single-line
-              solo
-              v-model="inputMessage"
-            ></v-text-field>
-          </v-col>
-        </div>
-      </v-card-text>
-      <v-card-text>
-        <v-btn v-if="!isLogin" @click="login">請先登入</v-btn>
-      </v-card-text>
-    </v-card>
+    <v-col v-if="isLogin">
+      <v-card max-height="70vh" style="overflow: auto">
+        <v-card-text>
+          <v-flex  v-for="(item, key) in MessageSort"
+                   :key="key" :class="isMy(item.Author.Email, false)">
+            <p v-if="!isMy(item.Author.Email, true)" class="ma-0 ml-2">{{name(item.Author.Email)}}</p>
+            <v-alert
+              class="rounded-pill ma-0 d-inline-block"
+              dense
+              color="grey darken-1"
+              dark
+            >
+              {{item.Content}}
+            </v-alert>
+          </v-flex>
+        </v-card-text>
+      </v-card>
+      <div class="testInput">
+        <v-col lg="6" md="6" sm="12" xs="12">
+          <v-text-field
+            @click:append-outer="addMessage"
+            @click:clear="clearMessage"
+            append-outer-icon="mdi-send"
+            label="請輸入文字"
+            single-line
+            solo
+            v-model="inputMessage"
+          ></v-text-field>
+        </v-col>
+      </div>
+    </v-col>
+    <v-col>
+      <v-btn v-if="!isLogin" @click="login">請先登入</v-btn>
+    </v-col>
   </div>
 </template>
 <script>

@@ -1,24 +1,21 @@
 <template>
   <div class="home">
     <v-card>
-      <v-card-text>
+      <v-card-text class="pa-1">
         <v-col cols="12" class="pa-0">
-          <v-carousel>
+          <v-carousel height="auto">
             <v-carousel-item
             v-for="(item, key) in carouselData"
             :key="key"
             >
               <v-img
               :src="require('../assets/carousel/'+item.dataName+'.jpg')"
-              class="fill-height"
               >
                 <v-container
-                fill-height
                 fluid
                 pa-0 ma-0
                 >
                   <v-layout
-                    fill-height
                     align-end
                   >
                     <v-col cols="12">

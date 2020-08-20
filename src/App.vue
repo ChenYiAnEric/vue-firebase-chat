@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <div class="justify-center">
-        <v-toolbar app dark color="blue darken-1" class="hidden-sm-and-down">
+        <v-toolbar dark color="blue darken-1" class="hidden-sm-and-down">
           <v-toolbar-title style="position: absolute">Eric Home</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -23,7 +23,7 @@
             <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-toolbar>
-        <v-toolbar app dark color="blue darken-1" class="hidden-md-and-up">
+        <v-toolbar dark color="blue darken-1" class="hidden-md-and-up">
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
           <v-toolbar-title>Eric Home</v-toolbar-title>
         </v-toolbar>

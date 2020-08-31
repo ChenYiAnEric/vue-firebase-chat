@@ -1,4 +1,5 @@
 <template>
+  <v-container>
   <div class="chat-room pa-4">
     <v-col v-if="isLogin">
       <v-card max-height="70vh" style="overflow: auto">
@@ -31,10 +32,11 @@
         </v-col>
       </div>
     </v-col>
-    <v-col>
-      <v-btn v-if="!isLogin" @click="login">請先登入</v-btn>
+    <v-col class="text-center">
+      <v-btn v-if="!isLogin" @click="login" class="chat-login-btn">請先登入</v-btn>
     </v-col>
   </div>
+  </v-container>
 </template>
 <script>
 import { db } from '../db'
@@ -132,5 +134,14 @@ export default {
     display: flex;
     align-content: center;
     justify-content: center;
+  }
+  .chat-login-btn {
+    width: 200px;
+    height: 200px;
+    border-radius: 50em;
+    font-size: 28px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+    background-blend-mode: multiply,multiply;
+    color: #fff;
   }
 </style>

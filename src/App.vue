@@ -2,8 +2,10 @@
   <div id="app">
     <v-app>
       <div class="justify-center">
-        <v-toolbar dark color="blue darken-1" class="hidden-sm-and-down">
-          <v-toolbar-title style="position: absolute">Eric Home</v-toolbar-title>
+        <v-toolbar color="cyan accent-2" class="hidden-sm-and-down">
+          <v-toolbar-title style="position: absolute; height: 100%">
+            <img src="../src/assets/logo.png" alt="logo" height="100%">
+          </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn
@@ -11,7 +13,7 @@
               :key="index"
               :to="item.url"
               :title="item.title"
-              color="blue darken-1"
+              color="cyan accent-2"
               depressed
             >{{item.text}}</v-btn>
           </v-toolbar-items>
@@ -23,9 +25,11 @@
             <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-toolbar>
-        <v-toolbar dark color="blue darken-1" class="hidden-md-and-up">
+        <v-toolbar color="cyan accent-2" class="hidden-md-and-up">
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-          <v-toolbar-title>Eric Home</v-toolbar-title>
+          <v-toolbar-title style="padding: 0; height: 100%">
+            <img src="../src/assets/logo.png" alt="logo" height="100%">
+          </v-toolbar-title>
         </v-toolbar>
       </div>
       <v-navigation-drawer
@@ -70,11 +74,20 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main>
-        <v-container>
-          <router-view/>
-        </v-container>
+      <v-main class="main-bg">
+        <router-view/>
       </v-main>
+      <v-footer
+        color="primary lighten-1"
+        padless
+      >
+        <v-col
+          class="grey darken-1 py-4 text-center white--text"
+          cols="12"
+        >
+          &copy; {{ new Date().getFullYear() }} — <strong>Eric Chen</strong>
+        </v-col>
+      </v-footer>
     </v-app>
   </div>
 </template>
@@ -146,4 +159,7 @@ export default {
 
 <style lang="scss">
   .container {}
+  .main-bg {
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  }
 </style>

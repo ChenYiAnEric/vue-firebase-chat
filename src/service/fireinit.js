@@ -4,7 +4,7 @@ require('firebase/firestore')
 
 const config = require('../firebase.config')
 
-!firebase.apps.length ? firebase.initializeApp(config) : ''
+if (!firebase.apps.length) { firebase.initializeApp(config) }
 
 const firestore = firebase.firestore()
 

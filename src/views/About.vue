@@ -35,12 +35,100 @@
               </p>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col cols="12" class="my-info">
+              <h2>經歷</h2>
+              <v-timeline :dense="RWDTab === 'xs'">
+                <v-timeline-item
+                  v-for="(year, i) in years"
+                  :key="i"
+                  :color="year.color"
+                  small
+                >
+                  <template v-slot:opposite>
+                    <span
+                      :class="`headline font-weight-bold ${year.color}--text`"
+                      v-text="year.year"
+                    ></span>
+                  </template>
+                  <div class="py-4">
+                    <h2 :class="`headline font-weight-light mb-4 ${year.color}--text`">{{year.title}}</h2>
+                    <div v-for="(item, key) in year.info" :key="key">
+                      {{item}}
+                    </div>
+                  </div>
+                </v-timeline-item>
+              </v-timeline>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-container>
   </div>
 </template>
-
+<script>
+export default {
+  name: 'About',
+  data () {
+    return {
+      years: [
+        {
+          color: 'green',
+          year: '2012',
+          title: '僑光科技大學(畢業)',
+          info: [
+            '2008年就讀 僑光科技大學 資訊科技系，並於2012年畢業。',
+            '就學期間考取 Adobe 和 TQC 多張證照。',
+            '曾擔任班上 副班代 和 輔導股長。'
+          ]
+        },
+        {
+          color: 'pink',
+          year: '2014',
+          title: '僑光科技大學(碩士畢業)',
+          info: [
+            '大學畢業後，繼續就讀同科系的碩士班',
+            '曾擔任班上 副班代 一職'
+          ]
+        },
+        {
+          color: 'amber',
+          year: '2016',
+          title: '跨平台(RWD)網頁設計班',
+          info: [
+            '於2016年6月參加勞動部勞動力發展署 地方政府訓練課程',
+            '並經考核通過結訓。'
+          ]
+        },
+        {
+          color: 'orange',
+          year: '2017',
+          title: '科技公司上班',
+          info: [
+            '2017年在科技公司上班',
+            '並學習AngularJS、VueJS、Git',
+            '使用IntelliJ IDEA、Sourcetree、Postman、Xshell'
+          ]
+        },
+        {
+          color: 'cyan',
+          year: '2020',
+          title: '現在',
+          info: [
+            '目前，還在職處理公司前端事務。'
+          ]
+        }
+      ]
+    }
+  },
+  computed: {
+    RWDTab () {
+      var breakpoint = this.$vuetify.breakpoint.name
+      return breakpoint
+    }
+  }
+}
+</script>
 <style>
   .container{}
   .my-list h3{

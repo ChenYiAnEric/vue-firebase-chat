@@ -61,6 +61,62 @@
               </v-timeline>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col cols="12" class="my-info">
+              <h2>作品連結</h2>
+              <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}">
+                <v-img
+                  class="white--text align-end"
+                  width="400px"
+                  height="200px"
+                  src="~@/assets/portfolio/template.png"
+                >
+                  <v-card-title style="background: rgba(68 ,68 ,68 , .5)">網站模板展示</v-card-title>
+                </v-img>
+                <v-card-text class="link-card-text">
+                  <v-btn
+                    dark
+                    class="px-5 rounded-pill blue darken-1"
+                    href="https://chenyianeric.github.io/EricData/Template/index.html"
+                    >立即前往</v-btn>
+                </v-card-text>
+              </v-card>
+              <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}" style="flex-direction: row-reverse;">
+                <v-img
+                  class="white--text align-end"
+                  width="400px"
+                  height="200px"
+                  src="~@/assets/portfolio/theone.png"
+                >
+                  <v-card-title style="background: rgba(68 ,68 ,68 , .5)">官網展示</v-card-title>
+                </v-img>
+                <v-card-text class="link-card-text">
+                  <v-btn
+                    dark
+                    class="px-5 rounded-pill blue darken-1"
+                    href="https://chenyianeric.github.io/EricData/theone/index.html"
+                  >立即前往</v-btn>
+                </v-card-text>
+              </v-card>
+              <v-card :class="{'d-flex': RWDTab !== 'xs'}">
+                <v-img
+                  class="white--text align-end"
+                  width="400px"
+                  height="200px"
+                  src="~@/assets/portfolio/lotto.png"
+                >
+                  <v-card-title style="background: rgba(68 ,68 ,68 , .5)">主畫面展示</v-card-title>
+                </v-img>
+                <v-card-text class="link-card-text">
+                  <v-btn
+                    dark
+                    class="px-5 rounded-pill blue darken-1"
+                    href="https://chenyianeric.github.io/EricData/lotto/index.html"
+                  >立即前往</v-btn>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-container>
@@ -140,5 +196,11 @@ export default {
   .my-info p{
     text-indent: 2rem;
     margin-bottom: 0;
+  }
+  .link-card-text {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   }
 </style>

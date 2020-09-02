@@ -1,6 +1,6 @@
 <template>
   <v-container>
-  <div class="chat-room pa-4">
+  <div class="chat-room" :class="{'pa-4': RWDTab !== 'xs'}">
     <v-col v-if="isLogin">
       <v-card max-height="70vh" style="overflow: auto">
         <v-card-text>
@@ -32,8 +32,8 @@
         </v-col>
       </div>
     </v-col>
-    <v-col class="text-center">
-      <v-btn v-if="!isLogin" @click="login" class="chat-login-btn">請先登入</v-btn>
+    <v-col v-if="!isLogin" class="text-center">
+      <v-btn @click="login" class="chat-login-btn">請先登入</v-btn>
     </v-col>
   </div>
   </v-container>
@@ -67,6 +67,10 @@ export default {
         return new Date(b.CreateTime.toDate()) - new Date(a.CreateTime.toDate())
       }).reverse()
       return sort
+    },
+    RWDTab () {
+      var breakpoint = this.$vuetify.breakpoint.name
+      return breakpoint
     }
   },
   methods: {

@@ -31,7 +31,7 @@
                 您好，我是陳怡安，現居台中，喜愛出遊、聽音樂、各種科技新聞和奇聞異事，也因為對多樣事物的好奇心，讓我在處理事情的問題上不會以單一方向去思考。
               </p>
               <p>
-                現任索朗科技公司的前端工程師，主要工作內容是html、CSS切版，程式方面用JavaScript、JQuery、VueJS、AngularJS等製作網頁效果，並連接後端Api，讀取、新增、修改資料。
+                剛從前公司離職，離職前是前端工程師，主要工作內容是html、CSS切版，程式方面用JavaScript、JQuery、VueJS、AngularJS等製作網頁效果，並連接後端Api，讀取、新增、修改資料。
               </p>
             </v-col>
           </v-row>
@@ -61,10 +61,10 @@
               </v-timeline>
             </v-col>
           </v-row>
-          <v-row>
+          <!-- <v-row>
             <v-col cols="12" class="my-info">
-              <h2>作品連結</h2>
-              <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}">
+              <h2>作品連結</h2> -->
+              <!-- <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}">
                 <v-img
                   class="white--text align-end"
                   width="400px"
@@ -114,9 +114,9 @@
                     href="https://chenyianeric.github.io/EricData/lotto/index.html"
                   >立即前往</v-btn>
                 </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
+              </v-card> -->
+            <!-- </v-col>
+          </v-row> -->
         </v-card-text>
       </v-card>
     </v-container>
@@ -167,12 +167,19 @@ export default {
           ]
         },
         {
-          color: 'cyan',
-          year: '2020',
-          title: '現在',
+          color: 'orange',
+          year: '2021',
+          title: '從科技公司離職',
           info: [
-            '目前，還在職處理公司前端事務。'
+            '建置個人Blog',
+            '學習使用VScode、Vercel、Hexo'
           ]
+        },
+        {
+          color: 'cyan',
+          year: '2021',
+          title: '現在',
+          info: []
         }
       ]
     }

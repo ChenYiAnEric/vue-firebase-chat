@@ -1,25 +1,11 @@
 <template>
   <div>
     <v-main>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            md="4"
-            sm="8"
-          >
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" md="4" sm="8">
             <v-card v-if="!isLogin" class="elevation-12">
-              <v-toolbar
-                color="blue darken-1"
-                dark
-                flat
-              >
+              <v-toolbar color="blue darken-1" dark flat>
                 <v-toolbar-title>Login form</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
@@ -49,19 +35,17 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" dark @click="login">Login</v-btn>
-                <v-btn color="blue darken-1" dark @click="singUp">Sing Up</v-btn>
+                <v-btn color="blue darken-1" dark @click="singUp"
+                  >Sing Up</v-btn
+                >
               </v-card-actions>
             </v-card>
             <v-card v-else>
-              <v-toolbar
-                color="blue darken-1"
-                dark
-                flat
-              >
+              <v-toolbar color="blue darken-1" dark flat>
                 <v-toolbar-title>user</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
-              <v-card-text>Hellow {{user.email}}</v-card-text>
+              <v-card-text>Hellow {{ user.email }}</v-card-text>
               <v-card-actions>
                 <v-btn color="blue darken-1" dark @click="logout">LogOut</v-btn>
               </v-card-actions>
@@ -74,25 +58,29 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
-      account: '',
-      password: '',
+      account: "",
+      password: "",
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => !!v || "E-mail is required",
+        v => /.+@.+/.test(v) || "E-mail must be valid"
       ]
-    }
+    };
   },
   computed: {
-    user () { return this.$store.state.user || '' },
-    isLogin () { return this.$store.state.isLogin }
+    user() {
+      return this.$store.state.user || "";
+    },
+    isLogin() {
+      return this.$store.state.isLogin;
+    }
   },
   methods: {
-    singUp () {
-      this.$router.push('/singup')
+    singUp() {
+      this.$router.push("/singup");
     },
-    login () {
+    login() {
       // const authProvider = new firebase.auth.GoogleAuthProvider()
       // fAuth.signInWithPopup(authProvider)
       //   .then(result => {
@@ -100,13 +88,15 @@ export default {
       //     this.isAuth = true
       //   })
       //   .catch(err => console.error(err))
-      this.$store.dispatch('signInWithEmail', {
-        email: this.account,
-        password: this.password
-      }).then(() => {
-        this.$router.push('/')
-      })
+      this.$store
+        .dispatch("signInWithEmail", {
+          email: this.account,
+          password: this.password
+        })
+        .then(() => {
+          this.$router.push("/");
+        });
     }
   }
-}
+};
 </script>

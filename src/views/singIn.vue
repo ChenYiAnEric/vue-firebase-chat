@@ -1,25 +1,11 @@
 <template>
   <div>
     <v-main>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            md="4"
-            sm="8"
-          >
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" md="4" sm="8">
             <v-card class="elevation-12">
-              <v-toolbar
-                color="blue darken-1"
-                dark
-                flat
-              >
+              <v-toolbar color="blue darken-1" dark flat>
                 <v-toolbar-title>Registered</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
@@ -59,44 +45,45 @@
 </template>
 <script>
 // import firebase from 'firebase/app'
-import { db } from '../db'
+// import { db } from "../db";
 
-const fAuth = db.auth()
+// const fAuth = db.auth();
 
 export default {
-  data () {
+  data() {
     return {
-      account: '',
-      password: '',
+      account: "",
+      password: "",
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => !!v || "E-mail is required",
+        v => /.+@.+/.test(v) || "E-mail must be valid"
       ]
-    }
+    };
   },
   methods: {
-    singUp () {
-      const vm = this
-      if (vm.account === '') {
-        alert('請輸入帳號')
-        return false
+    singUp() {
+      const vm = this;
+      if (vm.account === "") {
+        alert("請輸入帳號");
+        return false;
       } else {
-        if (vm.password === '') {
-          alert('請輸入密碼')
-          return false
+        if (vm.password === "") {
+          alert("請輸入密碼");
+          return false;
         } else {
-          fAuth.createUserWithEmailAndPassword(vm.account, vm.password)
-            .then(function () {
-              vm.$router.push('/')
-            })
-            .catch(function (error) {
-              const errorCode = error.code
-              const errorMessage = error.message
-              alert(errorCode, errorMessage)
-            })
+          // fAuth
+          //   .createUserWithEmailAndPassword(vm.account, vm.password)
+          //   .then(function() {
+          //     vm.$router.push("/");
+          //   })
+          //   .catch(function(error) {
+          //     const errorCode = error.code;
+          //     const errorMessage = error.message;
+          //     alert(errorCode, errorMessage);
+          //   });
         }
       }
     }
   }
-}
+};
 </script>

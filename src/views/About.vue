@@ -13,10 +13,22 @@
             </v-col>
             <v-col cols="12" md="9" sm="8">
               <v-row class="my-list">
-                <v-col cols="12" sm="6"><h3>姓名：</h3>陳怡安</v-col>
-                <v-col cols="12" sm="6"><h3>星座：</h3>獅子座</v-col>
-                <v-col cols="12" sm="6"><h3>血型：</h3>O</v-col>
-                <v-col cols="12" sm="6"><h3>興趣：</h3>聽音樂、旅遊</v-col>
+                <v-col cols="12" sm="6"
+                  ><h3>姓名：</h3>
+                  陳怡安</v-col
+                >
+                <v-col cols="12" sm="6"
+                  ><h3>星座：</h3>
+                  獅子座</v-col
+                >
+                <v-col cols="12" sm="6"
+                  ><h3>血型：</h3>
+                  O</v-col
+                >
+                <v-col cols="12" sm="6"
+                  ><h3>興趣：</h3>
+                  聽音樂、旅遊</v-col
+                >
                 <v-col cols="12">
                   <h3>技能專長：</h3>
                   前端網頁撰寫(Html、JS、CSS、VUE、AngularJS)、網頁切版、GIT
@@ -52,9 +64,15 @@
                     ></span>
                   </template>
                   <div class="py-4">
-                    <h2 :class="`headline font-weight-light mb-4 ${year.color}--text`">{{year.title}}</h2>
+                    <h2
+                      :class="
+                        `headline font-weight-light mb-4 ${year.color}--text`
+                      "
+                    >
+                      {{ year.title }}
+                    </h2>
                     <div v-for="(item, key) in year.info" :key="key">
-                      {{item}}
+                      {{ item }}
                     </div>
                   </div>
                 </v-timeline-item>
@@ -64,7 +82,7 @@
           <!-- <v-row>
             <v-col cols="12" class="my-info">
               <h2>作品連結</h2> -->
-              <!-- <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}">
+          <!-- <v-card class="mb-4" :class="{'d-flex': RWDTab !== 'xs'}">
                 <v-img
                   class="white--text align-end"
                   width="400px"
@@ -115,7 +133,7 @@
                   >立即前往</v-btn>
                 </v-card-text>
               </v-card> -->
-            <!-- </v-col>
+          <!-- </v-col>
           </v-row> -->
         </v-card-text>
       </v-card>
@@ -124,90 +142,85 @@
 </template>
 <script>
 export default {
-  name: 'About',
-  data () {
+  name: "About",
+  data() {
     return {
       years: [
         {
-          color: 'green',
-          year: '2012',
-          title: '僑光科技大學(畢業)',
+          color: "green",
+          year: "2012",
+          title: "僑光科技大學(畢業)",
           info: [
-            '2008年就讀 僑光科技大學 資訊科技系，並於2012年畢業。',
-            '就學期間考取 Adobe 和 TQC 多張證照。',
-            '曾擔任班上 副班代 和 輔導股長。'
+            "2008年就讀 僑光科技大學 資訊科技系，並於2012年畢業。",
+            "就學期間考取 Adobe 和 TQC 多張證照。",
+            "曾擔任班上 副班代 和 輔導股長。"
           ]
         },
         {
-          color: 'pink',
-          year: '2014',
-          title: '僑光科技大學(碩士畢業)',
+          color: "pink",
+          year: "2014",
+          title: "僑光科技大學(碩士畢業)",
+          info: ["大學畢業後，繼續就讀同科系的碩士班", "曾擔任班上 副班代 一職"]
+        },
+        {
+          color: "amber",
+          year: "2016",
+          title: "跨平台(RWD)網頁設計班",
           info: [
-            '大學畢業後，繼續就讀同科系的碩士班',
-            '曾擔任班上 副班代 一職'
+            "於2016年6月參加勞動部勞動力發展署 地方政府訓練課程",
+            "並經考核通過結訓。"
           ]
         },
         {
-          color: 'amber',
-          year: '2016',
-          title: '跨平台(RWD)網頁設計班',
+          color: "orange",
+          year: "2017",
+          title: "科技公司上班",
           info: [
-            '於2016年6月參加勞動部勞動力發展署 地方政府訓練課程',
-            '並經考核通過結訓。'
+            "2017年在科技公司上班",
+            "並學習AngularJS、VueJS、Git",
+            "使用IntelliJ IDEA、Sourcetree、Postman、Xshell"
           ]
         },
         {
-          color: 'orange',
-          year: '2017',
-          title: '科技公司上班',
-          info: [
-            '2017年在科技公司上班',
-            '並學習AngularJS、VueJS、Git',
-            '使用IntelliJ IDEA、Sourcetree、Postman、Xshell'
-          ]
+          color: "orange",
+          year: "2021",
+          title: "從科技公司離職",
+          info: ["建置個人Blog", "學習使用VScode、Vercel、Hexo"]
         },
         {
-          color: 'orange',
-          year: '2021',
-          title: '從科技公司離職',
-          info: [
-            '建置個人Blog',
-            '學習使用VScode、Vercel、Hexo'
-          ]
-        },
-        {
-          color: 'cyan',
-          year: '2021',
-          title: '現在',
+          color: "cyan",
+          year: "2021",
+          title: "現在",
           info: []
         }
       ]
-    }
+    };
   },
   computed: {
-    RWDTab () {
-      var breakpoint = this.$vuetify.breakpoint.name
-      return breakpoint
+    RWDTab() {
+      var breakpoint = this.$vuetify.breakpoint.name;
+      return breakpoint;
     }
   }
-}
+};
 </script>
 <style>
-  .container{}
-  .my-list h3{
-    display: inline-block;
-  }
-  .my-info h2{
-    margin-bottom: 15px;
-  }
-  .my-info p{
-    text-indent: 2rem;
-    margin-bottom: 0;
-  }
-  .link-card-text {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  }
+.container {
+}
+.my-list h3 {
+  display: inline-block;
+}
+.my-info h2 {
+  margin-bottom: 15px;
+}
+.my-info p {
+  text-indent: 2rem;
+  margin-bottom: 0;
+}
+.link-card-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
 </style>

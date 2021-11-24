@@ -1,10 +1,10 @@
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/auth";
 
-const config = require('@/firebase.config')
+const config = "@/firebase.config";
 
 // Get a Firestore instance
-const firebaseApp = firebase.initializeApp(config)
+const firebaseApp = firebase.initializeApp(config);
 
-export const db = firebaseApp
+export const db = firebaseApp;

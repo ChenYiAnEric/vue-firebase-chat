@@ -2,9 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import store from '../store/index.js'
 import Home from "../views/Home.vue";
-import login from "../views/login";
-import singup from "../views/singIn";
-import grid from "../views/Grid";
+// import login from "../views/login";
+// import singup from "../views/singIn";
+// import grid from "../views/Grid";
 // import chat from "../views/Chat";
 
 Vue.use(VueRouter);
@@ -15,16 +15,16 @@ const routes = [
     name: "Home",
     component: Home
   },
-  {
-    path: "/login",
-    name: "login",
-    component: login
-  },
-  {
-    path: "/singup",
-    name: "singup",
-    component: singup
-  },
+  // {
+  //   path: "/login",
+  //   name: "login",
+  //   component: login
+  // },
+  // {
+  //   path: "/singup",
+  //   name: "singup",
+  //   component: singup
+  // },
   {
     path: "/about",
     name: "About",
@@ -39,11 +39,11 @@ const routes = [
   //   name: "Chat",
   //   component: chat
   // }
-  {
-    path: "/grid",
-    name: "Grid",
-    component: grid
-  }
+  // {
+  //   path: "/grid",
+  //   name: "Grid",
+  //   component: grid
+  // }
 ];
 
 const router = new VueRouter({

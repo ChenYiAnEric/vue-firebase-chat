@@ -19,12 +19,12 @@
             >
           </v-toolbar-items>
           <v-spacer></v-spacer>
-          <v-btn icon v-if="!isLogin" to="/login">
+          <!-- <v-btn icon v-if="!isLogin" to="/login">
             <v-icon>mdi-login</v-icon>
           </v-btn>
           <v-btn icon v-if="isLogin" @click="logout">
             <v-icon>mdi-logout</v-icon>
-          </v-btn>
+          </v-btn> -->
         </v-toolbar>
         <v-toolbar color="cyan accent-2" class="hidden-md-and-up">
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
@@ -33,7 +33,7 @@
           </v-toolbar-title>
         </v-toolbar>
       </div>
-      <v-navigation-drawer absolute temporary v-model="drawer">
+      <!-- <v-navigation-drawer absolute temporary v-model="drawer">
         <v-list dense nav>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
@@ -63,7 +63,7 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-      </v-navigation-drawer>
+      </v-navigation-drawer> -->
 
       <v-main class="main-bg">
         <router-view />
@@ -112,19 +112,19 @@ export default {
           text: "關於",
           title: "about",
           url: "/about"
-        },
+        }
         // {
         //   icon: "mdi-chat",
         //   text: "聊天室",
         //   title: "chat",
         //   url: "/chat"
         // },
-        {
-          icon: "mdi-chat",
-          text: "Ag Grid",
-          title: "grid",
-          url: "/grid"
-        }
+        // {
+        //   icon: "mdi-chat",
+        //   text: "Ag Grid",
+        //   title: "grid",
+        //   url: "/grid"
+        // }
       ]
     };
   },
